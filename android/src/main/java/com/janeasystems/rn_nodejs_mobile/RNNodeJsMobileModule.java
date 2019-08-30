@@ -12,6 +12,8 @@ import com.facebook.react.bridge.ReadableType;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.LifecycleEventListener;
 import javax.annotation.Nullable;
+
+import android.os.Environment;
 import android.util.Log;
 
 import android.content.Context;
@@ -86,7 +88,8 @@ public class RNNodeJsMobileModule extends ReactContextBaseJavaModule implements 
     }
 
     // Register the filesDir as the Node data dir.
-    registerNodeDataDirPath(filesDirPath);
+//    registerNodeDataDirPath(filesDirPath);
+    registerNodeDataDirPath(Environment.getExternalStorageDirectory().getAbsolutePath());
 
     asyncInit();
   }

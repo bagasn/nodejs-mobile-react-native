@@ -88,8 +88,9 @@ public class RNNodeJsMobileModule extends ReactContextBaseJavaModule implements 
     }
 
     // Register the filesDir as the Node data dir.
-//    registerNodeDataDirPath(filesDirPath);
-    registerNodeDataDirPath(Environment.getExternalStorageDirectory().getAbsolutePath());
+    //As per November 2021, user cant create directory in external storage /storage/emulated/0/
+    registerNodeDataDirPath(filesDirPath);
+    //registerNodeDataDirPath(Environment.getExternalStorageDirectory().getAbsolutePath());
 
     asyncInit();
   }

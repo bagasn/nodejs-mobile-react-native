@@ -12,7 +12,7 @@ buildscript {
 apply plugin: 'com.android.library'
 
 def _nodeTargetSdkVersion = ((rootProject?.ext?.properties?.targetSdkVersion) ?: 22)
-def _nodeMinSdkVersion = ((rootProject?.ext?.properties?.minSdkVersion) ?: 16)
+def _nodeMinSdkVersion = ((rootProject?.ext?.properties?.minSdkVersion) ?: 21)
 def _compileNativeModulesSdkVersion = _nodeMinSdkVersion;
 if (_compileNativeModulesSdkVersion<21) {
     // 21 is the minimum sdk version Node is built with.
@@ -86,6 +86,13 @@ android {
         main.assets.srcDirs += '../install/resources/nodejs-modules'
     }
     
+    packagingOptions {
+        pickFirst 'lib/armeabi-v7a/libnode.so'
+        pickFirst 'lib/arm64-v8a/libnode.so'
+        pickFirst 'lib/x86_64/libnode.so'
+        pickFirst 'lib/x86/libnode.so'
+    }
+
     lintOptions {
         abortOnError false
     }
